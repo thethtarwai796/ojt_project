@@ -78,7 +78,7 @@
                   (v) => !!v || 'Required',
                   (v) =>
                     (v && v.length <= 50) ||
-                    'Name must be less than 50 characters',
+                    'Category name must be less than 50 characters',
                 ]" label="Name" required></v-text-field>
                 <!-- Update Btn -->
                 <v-btn
