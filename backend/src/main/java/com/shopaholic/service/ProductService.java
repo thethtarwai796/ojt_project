@@ -13,7 +13,7 @@ public interface ProductService {
 	
 	public Product updateProduct(int id, Product product);
 	
-	public Product updateInstock(int id, int qty);
+	public Integer updateProductStock(Integer pid, Integer qty);
 	
 	public List<Product> getAllProduct();
 	

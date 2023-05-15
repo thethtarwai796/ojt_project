@@ -50,6 +50,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderDetail> create(List<OrderDetail> order) {
 		return orderRepo.saveAll(order);
+		
 	}
 
 	@Override
@@ -99,6 +100,12 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderList getOneOrder(int order_number) {
 		return orderRepo.getOneOrderList(order_number);
+	}
+
+
+	@Override
+	public int getOrderNumber() {
+		return orderRepo.getOrderNumber();
 	}
 
 

@@ -17,6 +17,7 @@ public interface OrderService {
 
 	public int countUnshippedOrder();
 	
+	
 	public List<OrderDetail> getAllOrderDetail();
 	
 	public Integer getTotalSale();
@@ -24,6 +25,8 @@ public interface OrderService {
 	public Integer[] getTotalSaleByCategory();
 	
 	public Integer[] getTotalSaleByMonth();
+	
+	public int getOrderNumber();
 	
 	public List<OrderDetail> create(List<OrderDetail> order);
 	
