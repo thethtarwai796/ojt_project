@@ -20,6 +20,10 @@ import com.shopaholic.entity.OrderList;
 @EnableJpaRepositories
 public interface OrderRepo extends JpaRepository<OrderDetail, Integer>{
 	
+
+	@Query(value="select max(order_number) from order_detail",nativeQuery = true)
+		public int getOrderNumber();
+	
 	@Query("select new com.shopaholic.entity.OrderList(orderNumber,customer.cid,customer.cname,status,sum(qty*product.price) as total,orderDate) from OrderDetail where status=:status group by orderNumber")
 	public List<OrderList> findByStatus(String status);
 	

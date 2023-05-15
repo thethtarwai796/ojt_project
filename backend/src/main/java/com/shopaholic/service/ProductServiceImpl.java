@@ -42,11 +42,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public Product updateInstock(int id, int qty) {
-		Product product=this.getById(id);
-		product.setStockQty(product.getStockQty()-qty);
-		productRepo.save(product);
-		return product;
+	public Integer updateProductStock(Integer pid, Integer qty) {
+		return productRepo.updateStock(pid, qty);
 	}
 
 	@Override
@@ -78,6 +75,9 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productRepo.searchProduct(str);
 	}
+
+
+	
 
 
 	
