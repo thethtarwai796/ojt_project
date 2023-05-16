@@ -1,5 +1,7 @@
 <template>
   <div>
+    <myheading></myheading>
+    <mydrawer></mydrawer>
     <v-container>
       <v-col>
         <div>
@@ -109,10 +111,11 @@
 </template>
 <script>
   import utils from "../utils/utils";
-
+  import myheading from "../components/myheading.vue";
+  import mydrawer from "../components/mydrawer.vue";
   export default {
     name: "orderDetail",
-    components: {},
+    components: {mydrawer,myheading},
 
     data() {
       return {

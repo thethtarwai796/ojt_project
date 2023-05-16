@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
-
+import home from "../views/home.vue"
 import orderDetail from "../views/orderDetail.vue";
 import orderlist from "../views/orderlist.vue";
 import productlist2 from "../views/productlist2.vue";
@@ -22,6 +22,11 @@ import admin_record_list from "../views/admin_record_list.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/home",
+    name: "home",
+    component: home,
+  },
   {
     path: "/",
     name: "dashboard",

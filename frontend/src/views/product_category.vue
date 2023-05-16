@@ -1,5 +1,7 @@
 <template>
     <div>
+      <myheading></myheading>
+    <mydrawer></mydrawer>
         <v-container>
             <v-row>
                 <v-col>

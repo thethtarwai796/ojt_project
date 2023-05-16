@@ -1,5 +1,7 @@
 <template>
   <div>
+    <myheading></myheading>
+    <mydrawer></mydrawer>
     <v-container>
       <v-col>
         <h1 class="mb-10">Product List</h1>
@@ -42,10 +44,10 @@
 
           <v-col cols="12">
             <v-row>
-              <v-col cols="2" v-for="(product, index) in products" :key="index">
-                <v-card @click="updateProduct(product)" height="450">
+              <v-col cols="3" v-for="(product, index) in products" :key="index">
+                <v-card @click="updateProduct(product)" height="600">
                   <v-card-text>
-                    <v-img :src="localDomain + product.productPath" height="280" cover></v-img>
+                    <v-img :src="localDomain + product.productPath" height="400" cover></v-img>
                     <div class="pt-3">
                       <div class="text-h5 black--text">{{ product.pname }} ({{product.color}})</div>
                       <div class="text-body-1 black--text"><i>{{ product.price }} Kyat</i></div>
@@ -242,6 +244,7 @@
         }
       },
       async changeRoute() {
+        console.log(this.category);
         const resp = await utils.http.get("/product/getByCategory/" + this.category);
         if (resp && resp.status === 200) {
           const data = await resp.json();

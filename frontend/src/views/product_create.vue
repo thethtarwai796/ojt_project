@@ -1,5 +1,7 @@
 <template>
   <div>
+    <myheading></myheading>
+    <mydrawer></mydrawer>
     <v-container>
       <v-col>
         <h1 class="mb-10 text-center">Create Product</h1>
@@ -98,12 +100,14 @@
 </template>
 
 <script>
-  import sidebar_admin from "../components/sidebar_admin.vue";
+  import myheading from "../components/myheading.vue";
+  import mydrawer from "../components/mydrawer.vue";
+
   import utils from "../utils/utils";
 
   export default {
     name: "product_create",
-    components: { sidebar_admin },
+    components: { mydrawer,myheading },
 
     data() {
       return {

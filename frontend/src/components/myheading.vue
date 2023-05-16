@@ -9,11 +9,8 @@
       </v-app-bar-title>
 
       <v-spacer></v-spacer>
+      <v-icon size="60" class="white pink--text rounded-circle mr-3">person</v-icon>
       <v-btn>Log out</v-btn>
-
-
-
-
     </v-app-bar>
 
     
