@@ -1,5 +1,13 @@
+
+
 <template>
+
   <div>
+    <myheading></myheading>
+
+        <mydrawer></mydrawer>
+      
+      
     <v-container>
       <v-col>
         <h1 class="mb-10">Dashboard</h1>
@@ -80,7 +88,7 @@
           </v-col>
         </v-row>
         <v-data-table title="Today Orders" :headers="headers" :items="orderDetails" :items-per-page="5"
-          class="text--20 mt-2 elevation-1">
+          class="text--20 mt-2 elevation-3 display-1">
           <template v-slot:item.actions="{ item }">
             <!-- Update Movie -->
             
@@ -91,10 +99,10 @@
 
       </v-col>
 
-      </v-row>
+     
 
     </v-container>
-
+     
 
   </div>
 </template>

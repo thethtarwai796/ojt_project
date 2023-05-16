@@ -1,7 +1,7 @@
 <template>
-  <v-footer color="deep-purple lighten-1" padless>
+  <v-footer color="gray lighten-1" padless>
     <v-col class="text-center text-white" cols="12">
-      <strong>Copy @ 2022 Movie Theater</strong>
+      <strong>Copy @ 2023 OJT group project (ShopaHolic)</strong>
     </v-col>
   </v-footer>
 </template>
