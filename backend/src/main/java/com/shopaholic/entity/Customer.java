@@ -52,6 +52,12 @@ public class Customer implements java.io.Serializable{
 	@Column(length = 100)
 	private String role;
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
