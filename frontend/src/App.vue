@@ -1,8 +1,7 @@
 <template>
   <!-- SPA - Single Page Application -->
   <v-app>
-    <!-- <myheading/> -->
-    <!-- <mydrawer/> -->
+    
     <v-main>
     
       <router-view class="mx-2 my-2" style="height:100%" />

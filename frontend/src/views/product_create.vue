@@ -191,7 +191,7 @@
 
               if (respMovie && respMovie.status === 200) {
 
-                this.$router.push({ path: "/" });
+                this.$router.push({ path: "/productlist2" });
               } else {
                 this.errorAlert = true;
               }
