@@ -33,7 +33,7 @@ export default {
         {
           title: "Dashboard",
           icon: "mdi-home",
-          path: "/",
+          path: "/dashboard",
         },
         {
           title: "Proucts",

@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
 
+import com.shopaholic.controller.OrderController;
 import com.shopaholic.service.CategoryService;
+import com.shopaholic.service.OrderService;
 import com.shopaholic.service.ProductService;
 import com.shopaholic.service.StorageService;
 
@@ -26,10 +28,21 @@ public class OjtProjectApplication implements CommandLineRunner{
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	OrderService orderService;
 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String ddlMode;
 	
 	@Override
-	public void run(String... args) throws Exception {}
+	public void run(String... args) throws Exception {
+//		if (ddlMode.equals("create")) {
+//			OrderController orderController=new OrderController();
+//			orderController.orderNumber=orderService.getOrderNumber();
+//			
+//
+//}
+	}
+		
 }

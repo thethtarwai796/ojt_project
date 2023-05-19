@@ -172,10 +172,6 @@ public class AdminPart {
 		return orderDetails;
 	}
 	
-	@PostMapping("/order/create")
-	public List<OrderDetail> createOrder(@RequestBody List<OrderDetail> order) {
-		return orderService.create(order);
-	}
 	
 	@GetMapping("/order/getCount")
 	public int getOrderCount() {

@@ -13,22 +13,26 @@
     <v-spacer></v-spacer>
 
     <!-- Home -->
-    <router-link class="mx-2 navlink mr-10" to="/"><v-icon size="40" class="white--text">home</v-icon></router-link>
+    <router-link class="mx-2 navlink mr-10" to="/home">
+      <v-icon size="40" class="white--text">home</v-icon>
+    </router-link>
 
     <!-- Cart -->
     |
-    <router-link class="mx-2 navlink mr-10" to="/">
-      <v-icon size="40" class="pink white--text">shopping_cart</v-icon>
-      <v-span class="black m-5 rounded-pill">1</v-span>
-    </router-link>
+    
+      <v-icon size="40" class="pink white--text" @click="onClickCart()">shopping_cart</v-icon>
+      <v-span class="black m-5 rounded-pill mr-10">1</v-span>
+   
 
     <!-- Order History -->
     |
-    <router-link class="mx-2 navlink mr-10" style="border-right: black" to="/"><v-icon size="40" class="white--text">history_edu</v-icon></router-link>
+    
+      <v-icon size="40" class="white--text mr-10" @click="onClickHistory()">history_edu</v-icon>
+   
 
     <!-- Register and login -->
     <span v-if="!isLogin">|</span>
-    <router-link v-if="!isLogin" class="mx-2 navlink mr-10" to="/register">
+    <router-link v-if="!isLogin" class="mx-2 navlink mr-10" to="/login">
       <v-btn><v-icon class="whitesmoke pink--text">person</v-icon>Sign in</v-btn>
     </router-link>
 
@@ -94,6 +98,16 @@
           this.$router.push({ path: "/" });
         }
       },
+      onClickCart(){
+         if(this.isLogin==false)
+         this.$router.push({path:"/login"})
+         else this.$router.push({ path: "/" });
+      },
+      onClickHistory(){
+         if(this.isLogin==false)
+         this.$router.push({path:"/login"})
+         else this.$router.push({ path: "/" });
+      }
     },
   };
 </script>

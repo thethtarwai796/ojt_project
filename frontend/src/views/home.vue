@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="blue lighten-5">
     <heading></heading>
     <!-- Category Menu -->
     <template>

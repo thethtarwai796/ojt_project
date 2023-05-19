@@ -11,9 +11,7 @@
         <p>Data</p>
         <div class="text--primary">
           <div v-if="loginUser.role == 'admin'">Admin</div>
-          <div>{{ loginUser.gmail }}</div>
-          <div>Joining Date: {{ loginUser.startJoinDate }}</div>
-          <div>Visited times: {{ loginUser.accessCount }}</div>
+          <div>{{ loginUser.email }}</div>
         </div>
       </v-card-text>
 

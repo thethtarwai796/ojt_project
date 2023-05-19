@@ -19,8 +19,6 @@ import com.shopaholic.service.StorageService;
 
 @RestController
 public class CategoryController {
-	int totalStock;
-
 	@Autowired
 	ProductService productService;
 
@@ -34,14 +32,9 @@ public class CategoryController {
 	@GetMapping("/product/getAll")
 	public List<Product> getAllProduct() {
 		List<Product> products=productService.getAllProduct();
-		for(Product p:products)
-			totalStock+=p.getStockQty();
 		return products;
 	}
-	@GetMapping("/product/getTotalStock")
-	public int getTotalStock() {
-		return totalStock;
-	}
+	
 	@GetMapping("/product/getByCategory/{category_id}")
 	public ResponseEntity<?> getProductByCategory(
 			@PathVariable("category_id") int categoryID

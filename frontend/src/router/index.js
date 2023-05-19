@@ -23,12 +23,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "home",
     component: home,
   },
   {
-    path: "/",
+    path: "/dashboard",
     name: "dashboard",
     component: dashboard,
   },
