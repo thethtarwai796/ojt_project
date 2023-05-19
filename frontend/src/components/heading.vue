@@ -13,7 +13,7 @@
     <v-spacer></v-spacer>
 
     <!-- Home -->
-    <router-link class="mx-2 navlink mr-10" to="/home">
+    <router-link class="mx-2 navlink mr-10" to="/">
       <v-icon size="40" class="white--text">home</v-icon>
     </router-link>
 

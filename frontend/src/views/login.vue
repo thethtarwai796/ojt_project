@@ -21,8 +21,8 @@
               <v-text-field v-model="password" :counter="10" :rules="[
                       (v) => !!v || 'Required',
                       (v) =>
-                        (v && v.length <= 10) ||
-                        'Password must be less than 10 characters',
+                        (v && v.length <=10) ||
+                        'Password must be less than 10characters',
                     ]" :type="passwordShow ? 'text' : 'password'"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'" @click:append="passwordShow = !passwordShow"
                 label="Password" outlined required></v-text-field>
@@ -64,8 +64,8 @@ export default {
   data() {
     return {
       loginForm: false,
-      email: "thru@gmail.com",
-      password: "thru",
+      email: "",
+      password: "",
       passwordShow: false,
       errorAlert: false,
       loading: false,

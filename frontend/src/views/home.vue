@@ -145,7 +145,8 @@
 
       gotoProductDetail(product) {
         this.$router.push({
-          path: "/product_detail/" + product.pid,
+          //path: "/product_detail/" + product.pid,
+          path:"/"
         });
       },
 

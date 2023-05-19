@@ -59,14 +59,14 @@ export default {
           path: "/orderlist",
         },
         {
-          title: "Statistics",
-          icon: "mdi-account-supervisor ",
-          path: "/orderlist",
+          title: "Bill Transition",
+          icon: "paid ",
+          path: "/transition",
         },
         {
-          title: "Currency Exchange",
-          icon: "mdi-account-supervisor ",
-          path: "/product_create",
+          title: "Card Type",
+          icon: "mdi-credit-card ",
+          path: "/card",
         },
       ],
     };
