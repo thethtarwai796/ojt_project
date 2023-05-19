@@ -9,8 +9,16 @@
       </v-app-bar-title>
 
       <v-spacer></v-spacer>
-      <v-icon size="60" class="white pink--text rounded-circle mr-3">person</v-icon>
-      <v-btn>Log out</v-btn>
+     <!-- Profile -->
+    <router-link v-if="isLogin" class="mx-2 navlink rounded-circle mr-10" to="/profile">
+      <v-icon class="white pink--text rounded-circle" size="40">person</v-icon>
+    </router-link>
+
+    <!-- Login out -->
+    <span v-if="isLogin">|</span>
+    <a v-if="isLogin" class="mx-2 navlink mr-10" @click="logout()">
+      <v-icon size="40" class="white--text">logout</v-icon>
+    </a>
     </v-app-bar>
 
     
@@ -22,10 +30,53 @@
     name: "myheading",
 
     data() {
+      
       return {
-        drawer: false
+        drawer: false,
+        loginUser: {},
+        isLogin: false,
       }
     }
     ,
+    created() {
+      // Login User
+      this.loginUser = this.$store.state.loginUser;
+      this.$store.watch(
+        () => {
+          return this.$store.state.loginUser;
+        },
+        (newVal, oldVal) => {
+          this.loginUser = newVal;
+        },
+        {
+          deep: true,
+        }
+      );
+
+      // IsLogin
+      this.isLogin = this.$store.state.isLogin;
+      this.$store.watch(
+        () => {
+          return this.$store.state.isLogin;
+        },
+        (newVal, oldVal) => {
+          this.isLogin = newVal;
+        },
+        {
+          deep: true,
+        }
+      );
+    },
+
+    methods: {
+      logout() {
+        this.$store.commit("logout");
+        // If current path is not home page, Go to home page
+        if (this.$route.path != "/") {
+          this.$router.push({ path: "/" });
+        }
+      },
+    }
+    
   };
 </script>

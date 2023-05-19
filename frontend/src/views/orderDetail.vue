@@ -172,7 +172,7 @@
       const resp = await utils.http.post("/order/finished/"+ this.orderNumber);
       if (resp.status === 200) {
         //this.$router.push({ path: "/orderDetail/" + this.orderNumber,  });
-        this.$router.push({ path: "/"});
+        this.$router.push({ path: "/dashboard"});
       } 
     
 
