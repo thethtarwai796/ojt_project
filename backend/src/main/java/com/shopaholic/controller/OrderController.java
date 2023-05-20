@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopaholic.entity.Orders;
 import com.shopaholic.entity.OrderDetail;
 import com.shopaholic.entity.Product;
 import com.shopaholic.reposistory.OrderRepo;
 import com.shopaholic.reposistory.ProductRepo;
 import com.shopaholic.service.CategoryService;
+import com.shopaholic.service.OrderDetailService;
 import com.shopaholic.service.OrderService;
 import com.shopaholic.service.ProductService;
 import com.shopaholic.service.StorageService;
@@ -29,6 +31,9 @@ public class OrderController {
 	ProductService productService;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	OrderDetailService orderDetailService;
+	
 	
 	public static int orderNumber=33;
 	
@@ -41,14 +46,14 @@ public class OrderController {
 			} 
 		return ResponseEntity.ok().build();
 	}
+	@PostMapping("/order/createDetail")
+	public ResponseEntity<?> createOrderDetail(@Valid @RequestBody List<OrderDetail> orderList) {
+		return ResponseEntity.ok().body(orderDetailService.create(orderList));
+			}
+	
 	@PostMapping("/order/create")
-	public ResponseEntity<?> createOrder(@Valid @RequestBody List<OrderDetail> orderList) {
-		int oid=orderNumber;
-		orderNumber=orderNumber+1;
-		for(OrderDetail orderDetail:orderList) {
-			orderDetail.setOrderNumber(oid);
-			} 
-		return ResponseEntity.ok().body(orderService.create(orderList));
+	public ResponseEntity<?> createOrder(@Valid @RequestBody Orders order) {
+		return ResponseEntity.ok().body(orderService.create(order));
 			}
 	
 	

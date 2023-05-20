@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.shopaholic.entity.BestSell;
+import com.shopaholic.entity.Orders;
 import com.shopaholic.entity.OrderDetail;
-import com.shopaholic.entity.OrderList;
 
 
 public interface OrderService {
@@ -17,30 +17,22 @@ public interface OrderService {
 
 	public int countUnshippedOrder();
 	
-	
-	public List<OrderDetail> getAllOrderDetail();
+	public int countTodayOrder(LocalDate current);
 	
 	public Integer getTotalSale();
-	
-	public Integer[] getTotalSaleByCategory();
-	
+		
 	public Integer[] getTotalSaleByMonth();
 	
 	public int getOrderNumber();
 	
-	public List<OrderDetail> create(List<OrderDetail> order);
+	public Orders create(Orders order);
 	
 	public void updateStatus(int order_number,LocalDate date);
+		
+	public List<Orders> getAllOrders();
 	
-
-	public List<OrderList> getOrderByStatus(String status);
+	public List<Orders> getOrderByStatus(String status);
 	
-	public List<OrderList> getAllOrders();
-	
-	public OrderList getOneOrder(int order_number);
-	
-	public List<OrderDetail> getOrderDetailByOrderNo(int orderNumber);
-	
-	public List<BestSell> getBestSells();
-
+	public Orders getOneOrder(int order_number);
+		
 }
