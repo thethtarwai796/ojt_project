@@ -8,14 +8,14 @@
 
       <div class="d-flex justify-center pt-5">
         <v-card width="50%">
-          <v-card-title class="text-h6 text-md-h5 text-lg-h4">User Log in</v-card-title>
+          <v-card-title class="text-h6 text-md-h5 text-lg-h4 mt-10">To be Continue, please Log in</v-card-title>
           <v-card-text>
             <v-form ref="loginForm" v-model="loginForm">
               <!-- Email -->
               <v-text-field v-model="email" :rules="[
                       (v) => !!v || 'Required',
                       (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-                    ]" label="E-mail" outlined required></v-text-field>
+                    ]" label="E-mail" outlined required class="mt-10"> </v-text-field>
 
               <!-- Password -->
               <v-text-field v-model="password" :counter="10" :rules="[
@@ -38,8 +38,8 @@
                 Login Failed! <br />
                 Email or Password is wrong!
               </v-alert>
-              <br>
-              <router-link class="mx-2 navlink" to="/">Not Register yet? Sign up</router-link>
+              <br>Don't have account?
+              <router-link class="mx-2 navlink" to="/"> Sign up</router-link>
             </v-form>
           </v-card-text>
         </v-card>

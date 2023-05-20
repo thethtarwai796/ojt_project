@@ -7,7 +7,7 @@
         <div>
           <h1 class="mb-10" style="width:fit-content;">Order Number- {{orderNumber}}</h1><v-spacer></v-spacer>
           <strong  style="font-size: x-large;"class="rounded blue white--text mb-2 pa-2 ">
-           {{detail[0].status}}
+           {{detail[0].order.status}}
           </strong>
         </div>
          
@@ -27,7 +27,7 @@
                                 ></v-img>
               </template>
               <template v-slot:item.subtotal="{ item }">
-                {{item.product.price* item.qty}}
+                {{(item.product.price* item.qty)-(item.product.price* item.qty*(item.product.discount*0.01))}}
               </template>
               </v-data-table>
             </v-card>
@@ -46,10 +46,11 @@
                     <v-card-title style="color:black;font-size:x-large;">Customer Summary</v-card-title>
                     <v-card-text style="font-size: larger;" class="font-weight-bold">
                     
-                    Name<v-span class="ml-10">{{detail[0].customer.cname}}</v-span><v-spacer></v-spacer>
-                    Email<v-span class="ml-10">{{detail[0].customer.email}}</v-span><v-spacer></v-spacer>
-                    Phone<v-span class="ml-10">{{detail[0].customer.phone}}</v-span><v-spacer></v-spacer>
-                    Address<v-span class="ml-10">{{detail[0].customer.address}}</v-span><v-spacer></v-spacer>
+                    Name<v-span class="ml-10">{{detail[0].order.customer.cname}}</v-span><v-spacer></v-spacer>
+                    Email<v-span class="ml-10">{{detail[0].order.customer.email}}</v-span><v-spacer></v-spacer>
+                    Phone<v-span class="ml-10">{{detail[0].order.customer.phone}}</v-span><v-spacer></v-spacer>
+                    Address<v-span class="ml-10">{{detail[0].order.customer.address}}</v-span><v-spacer></v-spacer>
+                    Delivery Address <v-span class="ml-10">{{detail[0].order.deliverAddress}}</v-span><v-spacer></v-spacer>
                     </v-card-text>
                   </v-card-item>
                 
@@ -131,6 +132,7 @@
           { text: "Name", value: "product.pname", sortable: true },
           { text: "Color", value: "product.color", sortable: false },
           { text: "Price", value: "product.price", sortable: true },
+          { text: "Discount %", value: "product.discount", sortable: true },
           { text: "Quantity", value: "qty", sortable: true },
           { text: "Sub Total", value: "subtotal", sortable: true },
 
@@ -154,11 +156,13 @@
         if (resp && resp.status === 200) {
           const data = await resp.json();
           if (data) {
+
             this.detail = data;
-            data.map(a=>(a.product.price*a.qty)).forEach(element => {
-              this.total+=element;
-            });
-            if(data[0].status=="pending"){
+            this.total=this.detail[0].order.total;
+            // data.map(a=>(a.product.price*a.qty)).forEach(element => {
+            //   this.total+=element;
+            // });
+            if(data[0].order.status=="pending"){
               this.flag=false;
             }
 
