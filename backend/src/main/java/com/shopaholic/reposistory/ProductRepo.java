@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 
 
 import com.shopaholic.entity.Categories;
-import com.shopaholic.entity.OrderList;
 import com.shopaholic.entity.Product;
 
 @EnableJpaRepositories

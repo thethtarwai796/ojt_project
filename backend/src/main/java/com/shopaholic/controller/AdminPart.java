@@ -26,9 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shopaholic.entity.BestSell;
 import com.shopaholic.entity.Categories;
 import com.shopaholic.entity.OrderDetail;
-import com.shopaholic.entity.OrderList;
+import com.shopaholic.entity.Orders;
 import com.shopaholic.entity.Product;
 import com.shopaholic.service.CategoryService;
+import com.shopaholic.service.OrderDetailService;
 import com.shopaholic.service.OrderService;
 import com.shopaholic.service.ProductService;
 import com.shopaholic.service.StorageService;
@@ -50,6 +51,9 @@ public class AdminPart {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	OrderDetailService orderDetailService;
 	
 	//----------------Category------------------
 	@GetMapping("/category/getAll")
@@ -158,20 +162,36 @@ public class AdminPart {
 	}
 	
 
-	//---------------Order---------------------
-	@GetMapping("/order/getAll")
-	public List<OrderDetail> getAllOrder() {
-		List<OrderDetail> orderDetails=orderService.getAllOrderDetail();
-		todayOrder=0;
-		for(OrderDetail o:orderDetails) {
-			if(o.getOrderDate().equals(java.time.LocalDate.now() )){
-				todayOrder++;
-			}
-		}
-			
+	//---------------Order Detail---------------------
+	@GetMapping("/order/getAllDetail")
+	public List<OrderDetail> getAllOrderDetail() {
+		List<OrderDetail> orderDetails=orderDetailService.getAllOrderDetail();
 		return orderDetails;
 	}
 	
+	
+	@GetMapping("/order/getTotalSaleByCategory")
+	public Integer[] getTotalSaleByCategory() {
+		return orderDetailService.getTotalSaleByCategory();
+	}
+	
+
+	@PostMapping("/order/findByOrderNo/{order_number}")
+	public List<OrderDetail> findByOrderNo(@PathVariable("order_number") int order_number) {
+		 return orderDetailService.getOrderDetailByOrderNo(order_number);
+	}
+	
+	@GetMapping("/order/getBestSell")
+	public List<BestSell> getBestSell() {
+		return orderDetailService.getBestSells();
+	}
+	
+	//-----------------------Order------------
+	@GetMapping("/order/getAll")
+	public List<Orders> getAllOrder() {
+		List<Orders> orders=orderService.getAllOrders();
+		return orders;
+	}
 	
 	@GetMapping("/order/getCount")
 	public int getOrderCount() {
@@ -189,7 +209,7 @@ public class AdminPart {
 	
 	@GetMapping("/order/getTodayOrder")
 	public int getToday() {
-		return todayOrder;
+		return orderService.countTodayOrder(LocalDate.now());
 	}
 	
 	@PostMapping("/order/finished/{order_number}")
@@ -199,7 +219,7 @@ public class AdminPart {
 	}
 	
 	@GetMapping("/order/getByStatus/{status}")
-	public List<OrderList> getOrdersByStatus(@PathVariable("status") String status) {
+	public List<Orders> getOrdersByStatus(@PathVariable("status") String status) {
 		String sts="";
 		if(status.equals("Finished"))
 			sts="finished";
@@ -209,20 +229,9 @@ public class AdminPart {
 	}
 	
 	
-	
-	@GetMapping("/order/getAllOrderList")
-	public List<OrderList> getAllOrderLists() {
-		return orderService.getAllOrders();
-	}
-	
 	@GetMapping("/order/getOneOrderList/{order_number}")
-	public OrderList getOneOrderLists(@PathVariable("order_number") int order_number) {
+	public Orders getOneOrder(@PathVariable("order_number") int order_number) {
 		return orderService.getOneOrder(order_number);
-	}
-	
-	@GetMapping("/order/getTotalSaleByCategory")
-	public Integer[] getTotalSaleByCategory() {
-		return orderService.getTotalSaleByCategory();
 	}
 	
 	@GetMapping("/order/getTotalSaleByMonth")
@@ -234,16 +243,7 @@ public class AdminPart {
 	public Integer getTotalSale() {
 		return orderService.getTotalSale();
 	}
-
-	@PostMapping("/order/findByOrderNo/{order_number}")
-	public List<OrderDetail> findByOrderNo(@PathVariable("order_number") int order_number) {
-		 return orderService.getOrderDetailByOrderNo(order_number);
-	}
 	
-	@GetMapping("/order/getBestSell")
-	public List<BestSell> getBestSell() {
-		return orderService.getBestSells();
-	}
 	
 }
 

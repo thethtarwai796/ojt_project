@@ -1,8 +1,5 @@
 package com.shopaholic.entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,14 +30,11 @@ public class OrderDetail implements java.io.Serializable{
 	@Id
 	private int did;
 	
-	@Column(nullable = false)
-	private int orderNumber;
-	
-	@ManyToOne(targetEntity = Customer.class,cascade = CascadeType.ALL)
-	@JoinColumn(name = "cid", referencedColumnName = "cid")
+	@ManyToOne(targetEntity = Orders.class,cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_number", referencedColumnName = "orderNumber")
 	@NotNull(message = "Required")
-	private Customer customer;
-
+	private Orders order;
+	
 	@ManyToOne(targetEntity = Product.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "pid", referencedColumnName = "pid")
 	@NotNull(message = "Required")
@@ -48,19 +42,6 @@ public class OrderDetail implements java.io.Serializable{
 	
 	@Column(nullable = false)
 	private int qty;
-
-	
-	@Column(nullable = false)
-	@ColumnDefault("CURRENT_TIMESTAMP")
-	private LocalDate orderDate;
-	
-	@Column(nullable = true)
-	private LocalDate finishDate;
-	
-	@Column(length = 10, nullable = false)
-	@NotBlank(message = "Required")
-	private String status;
-	
 
 	public int getDid() {
 		return did;
@@ -70,15 +51,14 @@ public class OrderDetail implements java.io.Serializable{
 		this.did = did;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Orders getOrder() {
+		return order;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setOrder(Orders order) {
+		this.order = order;
 	}
 
-	
 	public Product getProduct() {
 		return product;
 	}
@@ -95,39 +75,7 @@ public class OrderDetail implements java.io.Serializable{
 		this.qty = qty;
 	}
 
-	public int getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
-	}
 	
-	public LocalDate getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public void setFinishDate(LocalDate finishDate) {
-		this.finishDate = finishDate;
-	}
-	public LocalDate getFinishDate() {
-		return finishDate;
-	}
 	
-
-	
-
-
 }
 
