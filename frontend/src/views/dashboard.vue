@@ -129,9 +129,9 @@
 
         headers: [
           { text: "Order Number", value: "orderNumber", sortable: true },
-          { text: "Customer Name", value: "name", sortable: false },
+          { text: "Customer Name", value: "customer.cname", sortable: false },
           { text: "Total", value: "total", sortable: true },
-          { text: "Ordered Date", value: "date", sortable: true },
+          { text: "Ordered Date", value: "orderDate", sortable: true },
           { text: "Status", value: "status", sortable: true },
 
           { text: "Details", value: "actions", sortable: false },
@@ -176,7 +176,7 @@
         }
       },
       async getOrderDetails() {
-        const resp = await utils.http.get("/order/getAllOrderList");
+        const resp = await utils.http.get("/order/getAll");
         if (resp && resp.status === 200) {
           const data = await resp.json();
           if (data) {
@@ -191,6 +191,7 @@
         //this.orderDetail = Object.assign({}, item);
         //this.$router.push({ path: "/orderDetail"});
         this.receipt = item;
+        console.log(item);
         this.$router.push({ path: "/orderDetail/" + this.receipt.orderNumber, });
 
       },
