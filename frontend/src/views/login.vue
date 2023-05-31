@@ -1,13 +1,16 @@
 <template>
-  <div  class="blue lighten-5">
+  <div>
     <container>
-      <div class=" d-flex justify-center">
-       
+      <div class=" d-flex justify-center mt-10 mb-10">
+        <img src="../assets/mainlolo.jpeg" style="height: 70px;border-radius: 20px;"></img>
+        <h2 class="display-3">
+          ShopaHolic</h2>
       </div>
 
 
-      <div class="d-flex justify-center pt-5">
-        <v-card width="50%">
+      <div class="d-flex justify-center">
+        <v-card width="40%">
+          
           <v-card-title class="text-h6 text-md-h5 text-lg-h4 mt-10">To be Continue, please Log in</v-card-title>
           <v-card-text>
             <v-form ref="loginForm" v-model="loginForm">
@@ -28,7 +31,7 @@
                 label="Password" outlined required></v-text-field>
 
               <!-- Login Btn -->
-              <v-btn :disabled="!loginForm" color="#146C94" class="mr-4 white--text" @click="login()">
+              <v-btn :disabled="!loginForm" class="mr-4 mb-5 pink white--text" style="width: 100%;"  @click="login()">
                 <span v-if="!loading">Login</span>
                 <v-progress-circular v-else indeterminate color="primary"></v-progress-circular>
               </v-btn>
@@ -38,10 +41,14 @@
                 Login Failed! <br />
                 Email or Password is wrong!
               </v-alert>
-              <br>Don't have account?
-              <router-link class="mx-2 navlink" to="/"> Sign up</router-link>
+              <br> 
+              <span style="font-size: large;">
+              Don't have account?
+              <router-link class="mx-2 navlink" to="/register"> Sign up</router-link>
+            </span>
             </v-form>
           </v-card-text>
+        
         </v-card>
       </div>
 

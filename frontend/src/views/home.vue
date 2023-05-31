@@ -1,22 +1,26 @@
 <template>
-  <div class="blue lighten-5">
+  <div>
     <heading></heading>
     <!-- Category Menu -->
-    <template>
+    <template >
       <v-card style="border-color:black;border-style: solid;">
-        <v-navigation-drawer clipped app>
-          <v-list dense nav>
-            <v-list-title class="">Categories</v-list-title>
+        <v-navigation-drawer clipped app >
+          <v-list dense nav  >
+            <v-list-title style="font-size:30px;">Categories</v-list-title>
             <hr>
             </hr>
+            
             <v-list-item link @click="onClickAllCategory()">
-              <v-list-content>All</v-list-content>
-            </v-list-item>
-            <v-list-item class="display-3" v-for="(category,i) in categories" :key="i" link
-              @click="onClickCategory(category.id)">
-
               <v-list-item-content>
-                <v-list-item-title>{{ category.name }}</v-list-item-title>
+                <v-list-item style="font-size:20px;">All</v-list-item>
+            </v-list-item-content>
+            </v-list-item>
+         
+            <v-list-item class="" v-for="(category,i) in categories" :key="i" link
+              @click="onClickCategory(category.id)" >
+
+              <v-list-item-content >
+                <v-list-item style="font-size:20px;">{{ category.name }}</v-list-item>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -26,36 +30,40 @@
     <v-container>
       <v-row>
         <v-col cols="12">
+          <!-- Search -->
           <v-card>
             <v-card-text>
               <v-card-title style="width:800px">
                 <v-text-field  v-model="searchkey" style="border:solid;border-color: black;height :50px;width:fit-content"
-                rounded placeholder="What are you looking for?" class="p-3"></v-text-field>
-              <v-btn class="black white--text" @click="search()">
-                <v-icon size="30" class="black white--text" >search</v-icon>Search
-              </v-btn>
+                rounded placeholder="What are you looking for?"
+                prepend-inner-icon="mdi-magnify"></v-text-field>
+             
               </v-card-title>
               
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
+      <!-- Product list -->
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-col cols="3" v-for="(product, index) in products" :key="index">
-              <v-card @click="gotoProductDetail(product)" height="600">
+            <v-col cols="3" v-for="(product, index) in filterProduct" :key="index">
+              <v-card @click="gotoProductDetail(product)" height="600" rounded="lg" elevation="8">
                 <v-card-text>
                   <v-img :src="localDomain + product.productPath" height="400" cover></v-img>
                   <div class="pt-3">
                     <div class="text-h5 black--text">{{ product.pname }} ({{product.color}})</div>
-                    <div class="text-body-1 black--text"><i>{{ product.price }} Kyat</i></div>
-                    <div class="text-body-1">Available Stock::{{ product.stockQty }} </div>
+                    <div class="text-body-1 black--text"><i><b>{{ product.price }} Kyat</b></i>
+                      <v-btn v-if="product.discount!=0" class="red white--text ml-10">
+                       {{ product.discount }}% Off ({{product.price-product.price*product.discount*0.01}}MMK )
+                      </v-btn>
+                      </div>
                     <div>
 
-                      <v-btn style="font-size: small;" class="white" @click="
+                      <v-btn style="font-size: small; border-style: solid; border-color: pink;" class=" mt-5" @click="
                     gotoProductDetail(product)">
-                        <v-icon>add_shopping_cart</v-icon>Add to cart</v-btn>
+                        <v-icon class="pink--text">add_shopping_cart</v-icon>Add to cart</v-btn>
                     </div>
 
                   </div>
@@ -89,6 +97,7 @@
         products: [],
         backupProduct: [],
         searchkey:"",
+        carryproduct:null,
       };
     },
 
@@ -96,6 +105,16 @@
       await this.getAllCategory();
       await this.getAllProduct();
     },
+    computed:{
+      filterProduct:function(){
+        return this.products.filter((product)=>{
+          return product.pname.toLowerCase().match(this.searchkey.toLowerCase())
+        }
+        
+        )
+      }
+    }
+    ,
 
     methods: {
       async getAllProduct() {
@@ -144,9 +163,10 @@
       },
 
       gotoProductDetail(product) {
+      
         this.$router.push({
           //path: "/product_detail/" + product.pid,
-          path:"/"
+          path:"/userProductClick/"+ product.pid
         });
       },
 

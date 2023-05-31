@@ -1,6 +1,18 @@
 <template>
   <div>
     <v-container>
+      <div class=" d-flex justify-center mt-10 mb-10">
+        <img src="../assets/mainlolo.jpeg" style="height: 70px;border-radius: 20px;"></img>
+        <h2 class="display-3">
+          ShopaHolic</h2>
+      </div>
+
+
+      <div class="d-flex justify-center">
+        <v-card width="40%">
+          
+          <v-card-title class="text-h6 text-md-h5 text-lg-h4 mt-10">To be Continue, please Sing Up</v-card-title>
+          <v-card-text>
       <!-- Register Form -->
       <v-form ref="registerForm" v-model="registerForm">
         <!-- Name -->
@@ -14,6 +26,7 @@
           ]"
           label="Name"
           required
+          outlined
         ></v-text-field>
 
         <!-- Email -->
@@ -25,6 +38,7 @@
           ]"
           label="E-mail"
           required
+          outlined
         ></v-text-field>
 
         <!-- Password -->
@@ -39,13 +53,38 @@
           ]"
           label="Password"
           required
+          outlined
         ></v-text-field>
-
+        <!-- Address -->
+        <v-text-field
+        v-model="address"
+        :counter="100"
+        :rules="[
+          (v) => !!v || 'Required',
+          (v) =>
+            (v && v.length <= 100) || 'Address must be less than 100 characters',
+        ]"
+        label="Address"
+        required
+        outlined
+      ></v-text-field>
+      <!-- Phone Number -->
+      <v-text-field type="number"
+          v-model="phno"
+          :counter="11"
+          :rules="[
+            (v) => !!v || 'Required',
+            (v) =>
+              (v && v.length <= 11) || 'Name must be 11 numbers',
+          ]"
+          label="Phone Number"
+          required
+          outlined
+        ></v-text-field>
         <!-- Register Btn -->
         <v-btn
           :disabled="!registerForm"
-          color="success"
-          class="mr-4"
+          class="mr-4 mb-5 pink white--text" style="width: 100%;"
           @click="register()"
         >
           <span v-if="!loading">Register</span>
@@ -61,6 +100,10 @@
           Register Failed!
         </v-alert>
       </v-form>
+    </v-card-text>
+        
+  </v-card>
+</div>
     </v-container>
   </div>
 </template>
@@ -77,13 +120,12 @@ export default {
     return {
       registerForm: false,
 
-      name: "",
-      email: "",
-      password: "",
-      // name: "Mg Mg",
-      // email: "test@gmail.com",
-      // password: "1111",
-
+      name: "member",
+      email: "member@gmail.com",
+      password: "member",
+      address:"Taungoo",
+      phno:"09111111111",
+     
       errorAlert: false,
       loading: false,
     };
@@ -100,10 +142,13 @@ export default {
           this.loading = true;
 
           // API Call
-          const resp = await utils.http.post("/user/register", {
-            name: this.name,
-            gmail: this.email,
+          const resp = await utils.http.post("/register", {
+            cname: this.name,
+            email: this.email,
             password: this.password,
+            address:this.address,
+            phone:this.phno
+
           });
           if (resp.status === 200) {
             const data = await resp.json();

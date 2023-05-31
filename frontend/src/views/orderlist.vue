@@ -7,7 +7,8 @@
         
         <v-row>
           <v-col cols="4">
-            <v-card class="rounded-x1">
+            <!-- Show Total Order count-->
+            <v-card class="rounded-x1" elevation="8">
               <v-row>
                 <v-col cols="4" md="2" sm="4" offset="1" class="mt-5">
 
@@ -28,7 +29,8 @@
             </v-card>
           </v-col>
           <v-col cols="4">
-            <v-card class="rounded-x1">
+            <!-- Show Finished Order count-->
+            <v-card class="rounded-x1" elevation="8">
               <v-row>
                 <v-col cols="4" md="2" sm="4" offset="1" class="mt-5">
                   <v-icon size="60" class="rounded dark green white--text">shopping_cart
@@ -48,7 +50,8 @@
             </v-card>
           </v-col>
           <v-col cols="4">
-            <v-card class="rounded-x1">
+            <!-- Show Pending Order count -->
+            <v-card class="rounded-x1" elevation="8">
               <v-row>
                 <v-col cols="4" md="2" sm="4" offset="1" class="mt-5">
                   <v-icon size="60" class="rounded dark yellow white--text">shopping_cart
@@ -77,18 +80,19 @@
         </v-row>
         <v-row>
           <v-col cols="12">
-            <v-card>
-              <v-row>
-                <v-col cols="4">
+            
+            <v-card elevation="8">
+              <v-row >
+                <v-col cols="6">
+                  <!-- Search box -->
                   <v-text-field type="number" style="border:solid" v-model="searchkey" rounded
-                    placeholder="Search with Order_No:"></v-text-field>
+                    placeholder="Search with Order_No:" prepend-inner-icon="mdi-magnify"></v-text-field>
                 </v-col>
-                <v-col cols="2">
-                  <v-icon size="30" class="grey white--text mt-5" @click="search()">search</v-icon>
-                </v-col>
+              
+                <!-- Status Select Box -->
                 <v-col cols="4">
                   <v-select rounded v-model="status" :items="statusList" item-text="name" item-value="id"
-                  :rules="[(v) => !!v || 'Required']" label="Category" required 
+                  :rules="[(v) => !!v || 'Required']" label="Choose Status" required 
                   v-on:change="changeRoute()" style="border:solid; width:200px"
                   >
                 </v-select>
@@ -99,9 +103,9 @@
 
           </v-col>
         </v-row>
-        
-        <v-data-table title="Today Orders" :headers="headers" :items="orderDetails" :items-per-page="10"
-          class="text--20 mt-2 elevation-1">
+        <!-- Show Order List -->
+        <v-data-table title="Today Orders" :headers="headers" :items="filterOrder" :items-per-page="10"
+          class="text--20 mt-10 elevation-8 ">
           <template v-slot:item.actions="{ item }">
             <!-- Update Movie -->
             
@@ -149,7 +153,7 @@
           { text: "Order Number", value: "orderNumber", sortable: true },
           { text: "Customer Name", value: "customer.cname", sortable: false },
           { text: "Total", value: "total", sortable: true },
-          { text: "Ordered Date", value: "date", sortable: true },
+          { text: "Ordered Date", value: "orderDate", sortable: true },
           { text: "Status", value: "status", sortable: true },
 
           { text: "Details", value: "actions", sortable: false },
@@ -164,6 +168,15 @@
       await this.getPendingOrders()
       await this.getOrderDetails()
 
+    },
+    computed:{
+      filterOrder:function(){
+        return this.orderDetails.filter((order)=>{
+          return order.orderNumber.toString().match(this.searchkey)
+        }
+        
+        )
+      }
     },
     methods: {
       async getTotalOrder() {

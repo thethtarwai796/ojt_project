@@ -15,6 +15,11 @@ import profile from "../views/profile.vue";
 import changePwd from "../views/changePwd.vue";
 import transition from "../views/transition.vue";
 import card from "../views/card.vue";
+import userProductClick from "../views/userProductClick.vue";
+import cartlist from "../views/cartlist.vue";
+import userorderhistory from "../views/userorderhistory.vue";
+
+
 // import admin_create_movie from "../views/admin_create_movie.vue";
 // import admin_user_list from "../views/admin_user_list.vue";
 // import admin_record_list from "../views/admin_record_list.vue";
@@ -26,6 +31,21 @@ const routes = [
     path: "/",
     name: "home",
     component: home,
+  },
+  {
+    path: "/userProductClick/:pid",
+    name: "userProductClick",
+    component: userProductClick,
+  },
+  {
+    path: "/cartlist",
+    name: "cartlist",
+    component: cartlist,
+  },
+  {
+    path: "/userorderhistory",
+    name: "userorderhistory",
+    component: userorderhistory,
   },
   {
     path: "/dashboard",
