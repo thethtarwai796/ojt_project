@@ -24,7 +24,7 @@
                   <v-card-item>
                     <v-card-title style="color:gray">Total Sale</v-card-title>
                     <v-card-text style="font-size: larger;" class="font-weight-bold">
-                      {{totalSale}}
+                      {{totalSale}}MMK
                     </v-card-text>
                   </v-card-item>
                 </v-col>
@@ -128,7 +128,7 @@
         localDomain: utils.constant.localDomain,
 
         headers: [
-          { text: "Order Number", value: "orderNumber", sortable: true },
+          { text: "#Order Number", value: "orderNumber", sortable: true },
           { text: "Customer Name", value: "customer.cname", sortable: false },
           { text: "Total", value: "total", sortable: true },
           { text: "Ordered Date", value: "orderDate", sortable: true },

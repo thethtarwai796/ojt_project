@@ -1,12 +1,13 @@
 <template>
   <div>
   <nav>
-    <v-app-bar clipped-left class="pink white--text" app>
+    <v-app-bar clipped-left class="pink white--text" height="100px" app>
       
-      <v-app-bar-title>
-        <h2 class="display-3">
-          ShopaHolic</h2>
-      </v-app-bar-title>
+      
+        <img src="../assets/mainlolo.jpeg" style="height: 70px;border-radius: 20px;"></img>
+    <h2 class="display-3">
+      ShopaHolic</h2>
+      
 
       <v-spacer></v-spacer>
      <!-- Profile -->

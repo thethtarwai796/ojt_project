@@ -3,37 +3,34 @@
     <myheading></myheading>
     <mydrawer></mydrawer>
     <v-container>
-      <v-col>
-        <h1 class="mb-10">Product List</h1>
+      <v-col><v-row>
+        <h1 class="mb-10">Product List</h1><v-spacer></v-spacer>
+        <v-btn class="pink lighten-4 pink--text" @click="goToCreate()">
+          + Create Product
+        </v-btn>
+      </v-row>
         <v-row>
           <v-col cols="6">
-            <v-btn @click="getAllProduct">All</v-btn>
-            <v-select rounded v-model="category" :items="categories" item-text="name" item-value="id"
-              :rules="[(v) => !!v || 'Required']" label="Category" required v-on:change="changeRoute()">
-            </v-select>
-
+            <!-- Category Select Box -->
             <v-row>
-              <v-col cols="12">
-                <v-card>
-                  <v-row>
-                    <v-col cols="4">
-                      <v-text-field style="border:solid" v-model="searchkey" rounded
-                        placeholder="Search"></v-text-field>
-                    </v-col>
-                    <v-col cols="2">
-                      <v-icon size="30" class="grey white--text mt-5" @click="search()">search</v-icon>
-                    </v-col>
-                    <v-col cols="4">
-                      <v-btn class="blue white--text" @click="goToCreate()">
-                        + Create Product
-                      </v-btn>
-                    </v-col>
+            <v-btn @click="getAllProduct" class="mr-4" >All</v-btn>
+            <v-select rounded v-model="category" :items="categories" item-text="name" item-value="id"
+              :rules="[(v) => !!v || 'Required']" label="Category" required v-on:change="changeRoute()" outlined style="width: 50%;">
+              
+            </v-select>
+          </v-row>
+            <!-- search box -->
+            <v-card>
+              <v-card-text>
+                <v-card-title>
+                  <v-text-field  v-model="searchkey" style="height :50px;" prepend-inner-icon="mdi-magnify"
+                  rounded placeholder="What are you looking for?" outlined></v-text-field>
+                </v-card-title>
+                
+              </v-card-text>
+            </v-card>
 
-                  </v-row>
-                </v-card>
-
-              </v-col>
-            </v-row>
+            
 
           </v-col>
           <v-col cols="6">
@@ -44,8 +41,9 @@
 
           <v-col cols="12">
             <v-row>
-              <v-col cols="3" v-for="(product, index) in products" :key="index">
-                <v-card @click="updateProduct(product)" height="600">
+              <!-- Show Product List -->
+              <v-col cols="3" v-for="(product, index) in filterProduct" :key="index">
+                <v-card @click="onClickUpdateProduct(product)" height="600" rounded="lg" elevation="8">
                   <v-card-text>
                     <v-img :src="localDomain + product.productPath" height="400" cover></v-img>
                     <div class="pt-3">
@@ -54,10 +52,10 @@
                       <div class="text-body-1">Available Stock::{{ product.stockQty }} </div>
                       <div>
 
-                        <v-btn style="font-size: small;" class="white" @click="
+                        <v-btn style="font-size: small;" class="pink lighten-4 pink--text" @click="
                                     onClickUpdateProduct(product)
                                   ">
-                          <v-icon>edit</v-icon>Edit</v-btn>
+                          <v-icon class="">edit</v-icon>Edit</v-btn>
                       </div>
 
                     </div>
@@ -70,7 +68,7 @@
                 <v-dialog v-model="updateDialog" width="500">
                   <v-card>
                     <!-- Dialog Heading -->
-                    <v-toolbar color="primary" dark>
+                    <v-toolbar color="pink white--text" dark>
                       <div>Update This Product?</div>
                       <v-spacer></v-spacer>
                       <v-btn icon @click="updateDialog = false">
@@ -82,28 +80,28 @@
                     <v-card-text class="pa-4">
                       <v-form ref="productForm" v-model="productForm">
                         <!-- Update Product Title -->
-                        <v-text-field v-model="toUpdateProduct.pname" :counter="50" :rules="[
+                        <v-text-field v-model="toUpdateProduct.pname" :counter="100" :rules="[
                                       (v) => !!v || 'Required',
                                       (v) =>
-                                        (v && v.length <= 50) ||
-                                        'Name must be less than 50 characters',
+                                        (v && v.length <= 100) ||
+                                        'Name must be less than 100 characters',
                                     ]" label="Name" required></v-text-field>
 
                         <!-- Update Product color -->
-                        <v-text-field v-model="toUpdateProduct.color" :counter="1000" :rules="[
+                        <v-text-field v-model="toUpdateProduct.color" :counter="100" :rules="[
                                       (v) => !!v || 'Required',
                                       (v) =>
-                                        (v && v.length <= 1000) ||
-                                        'Overview must be less than 1000 characters',
+                                        (v && v.length <= 100) ||
+                                        'Overview must be less than 100 characters',
                                     ]" label="Color" required></v-text-field>
 
                         <!-- Update Product stock qty -->
-                        <v-text-field v-model="toUpdateProduct.stockQty" type="number" suffix="MMK" max="999999" min="1"
+                        <v-text-field v-model="toUpdateProduct.stockQty" type="number" suffix="Pieces" max="999999" min="1"
                           :rules="[
                                      (v) => !!v || 'Required',
                                      (v) =>
                                        (v && v > 0 && v <= 999999) ||
-                                       'Buget must be between 0 and 999999 MMK',
+                                       'Stock quantity must be between 0 and 999999',
                                    ]" label="Stock" required></v-text-field>
 
                         <!-- Update Product price -->
@@ -112,27 +110,27 @@
                                       (v) => !!v || 'Required',
                                       (v) =>
                                         (v && v > 0 && v <= 999999) ||
-                                        'Buget must be between 0 and 999999 MMK',
-                                    ]" label="Price" required></v-text-field>
+                                        'Unit Price must be between 0 and 999999 MMK',
+                                    ]" label="Unit Price" required></v-text-field>
 
                         <!-- Update Product discount -->
-                        <v-text-field v-model="toUpdateProduct.discount" type="number" suffix="MMK" max="999999" min="0"
+                        <v-text-field v-model="toUpdateProduct.discount" type="number" suffix="%" max="100" min="0"
                           :rules="[
-                                     (v) => !!v || 'Required',
+                                     
                                      (v) =>
                                        (v && v >= 0 && v <= 999999) ||
-                                       'Buget must be between 0 and 999999 MMK',
-                                   ]" label="discount" required></v-text-field>
+                                       'Discount must not be less than 0',
+                                   ]" label="discount"></v-text-field>
 
 
-                        <!-- Update Movie Category -->
+                        <!-- Update  Category -->
                         <v-select v-model="toUpdateProduct.category" :items="categories" item-text="name"
                           item-value="id" :rules="[(v) => !!v || 'Required']" label="Category" required>
                         </v-select>
 
 
 
-                        <!-- Update Movie Poster -->
+                        <!-- Update Product imagae -->
                         <v-file-input v-model="toUpdateProduct.poster" label="Poster" show-size
                           prepend-icon="mdi-camera" placeholder="Choose Poster Image" accept="image/png, image/jpeg"
                           :rules="[
@@ -152,14 +150,14 @@
                           contain>
                         </v-img>
                         <!-- Update Btn -->
-                        <v-btn :disabled="!productForm" color="success" class="mr-4" @click="updateProduct">
+                        <v-btn :disabled="!productForm"  class="mr-4 pink lighten-4 pink--text" @click="updateProduct">
                           <span v-if="!loading">Update</span>
                           <v-progress-circular v-else indeterminate color="primary"></v-progress-circular>
                         </v-btn>
 
                         <!-- Error Alert -->
                         <v-alert class="mt-3" v-show="errorAlert" dense type="error">
-                          Update Movie Failed!
+                          Update Product Failed!
                         </v-alert>
                       </v-form>
                     </v-card-text>
@@ -196,7 +194,7 @@
         products: [],
         categories: [],
         category: "",
-        searchkey: "",
+        searchkey:'',
 
         updateDialog: false,
         productForm: false,
@@ -223,6 +221,16 @@
         await this.getAllCategory()
 
     },
+    computed:{
+      filterProduct:function(){
+        return this.products.filter((product)=>{
+          return product.pname.toLowerCase().match(this.searchkey.toLowerCase())
+        }
+        
+        )
+      }
+    }
+    ,
     methods: {
 
       async getAllProduct() {
@@ -233,6 +241,7 @@
             this.products = data;
           }
         }
+        this.category=" ";
       },
       async getAllCategory() {
         const resp = await utils.http.get("/category/getAll");
@@ -244,7 +253,6 @@
         }
       },
       async changeRoute() {
-        console.log(this.category);
         const resp = await utils.http.get("/product/getByCategory/" + this.category);
         if (resp && resp.status === 200) {
           const data = await resp.json();
@@ -347,17 +355,7 @@
         });
       },
 
-      async search() {
-        const resp = await utils.http.get("/product/searchProduct?pname=" + this.searchkey);
-        if (resp && resp.status === 200) {
-          const data = await resp.json();
-          if (data) {
-            this.products = data;
-            this.searchkey = "";
-          }
-        }
-
-      },
+      
 
 
 

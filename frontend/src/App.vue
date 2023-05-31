@@ -2,7 +2,7 @@
   <!-- SPA - Single Page Application -->
   <v-app>
     
-    <v-main>
+    <v-main class="pink lighten-5">
     
       <router-view class="mx-2 my-2" style="height:100%" />
     
@@ -23,6 +23,7 @@ export default {
   components: {
     myheading,
     mydrawer,
+    footing
   },
 
   data: () => ({}),

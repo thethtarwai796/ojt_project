@@ -1,7 +1,7 @@
 <template>
-  <v-footer color="gray lighten-1" padless>
-    <v-col class="text-center text-white" cols="12">
-      <strong>Copy @ 2023 OJT group project (ShopaHolic)</strong>
+  <v-footer color="pink--text" padless>
+    <v-col class="text-center" cols="12">
+      <strong>Copyright @ 2023 OJT group project (ShopaHolic)</strong>
     </v-col>
   </v-footer>
 </template>

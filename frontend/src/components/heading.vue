@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar clipped-left class="pink white--text" app>
+  <v-app-bar clipped-left class="pink white--text" height="100px" app>
 
-
+    <img src="../assets/mainlolo.jpeg" style="height: 70px;border-radius: 20px;"></img>
     <h2 class="display-3">
       ShopaHolic</h2>
       
@@ -20,9 +20,7 @@
     <!-- Cart -->
     |
     
-      <v-icon size="40" class="pink white--text" @click="onClickCart()">shopping_cart</v-icon>
-      <v-span class="black m-5 rounded-pill mr-10">1</v-span>
-   
+      <v-icon size="40" class="pink white--text mr-10" @click="onClickCart()">shopping_cart</v-icon>   
 
     <!-- Order History -->
     |
@@ -101,14 +99,23 @@
       onClickCart(){
          if(this.isLogin==false)
          this.$router.push({path:"/login"})
-         else this.$router.push({ path: "/" });
+         else this.$router.push({ path: "/cartlist" });
       },
       onClickHistory(){
          if(this.isLogin==false)
          this.$router.push({path:"/login"})
-         else this.$router.push({ path: "/" });
+         else this.$router.push({ path: "/userorderhistory" });
       }
     },
+    // computed:{
+    //   cartItemCount(){
+    //     console.log(this.$store.state.cartitemcount);
+    //     return this.$store.state.cartitemcount;
+    //   }
+    // }
+      
+    
+    
   };
 </script>
 
@@ -128,4 +135,5 @@
     text-decoration: none;
     cursor: pointer !important;
   }
+  
 </style>

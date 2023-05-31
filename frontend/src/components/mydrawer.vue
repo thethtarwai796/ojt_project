@@ -1,10 +1,10 @@
 <template>
   <v-navigation-drawer clipped app>
-    <v-list>
-      <template v-for="(link, index) in links" active-class="red--text">
+    <v-list >
+      <template v-for="(link, index) in links">
         <v-list-item :key="index" v-if="!link.subLinks" link @click="goToRoute(link.path)">
           <v-list-item-icon>
-            <v-icon>{{ link.icon }}</v-icon>
+            <v-icon class="pink--text">{{ link.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ link.title }}</v-list-item-title>
@@ -12,7 +12,7 @@
         </v-list-item>
         <v-list-group :key="index" v-else>
           <template v-slot:activator>
-            <v-icon>{{ link.icon }}</v-icon>
+            <v-icon class="pink--text">{{ link.icon }}</v-icon>
             <v-list-item-title>{{ link.title }}</v-list-item-title>
           </template>
           <v-list-item v-for="(sublink, subIndex) in link.subLinks" :key="subIndex" link @click="goToRoute(sublink.path)">
@@ -63,11 +63,7 @@ export default {
           icon: "paid ",
           path: "/transition",
         },
-        {
-          title: "Card Type",
-          icon: "mdi-credit-card ",
-          path: "/card",
-        },
+        
       ],
     };
   },

@@ -6,7 +6,7 @@
             <v-row>
                 <v-col>
                     <h1 class="mb-10">Categories</h1>
-                    <v-btn @click="onClickAdd">+ Add Category</v-btn>
+                    <v-btn @click="onClickAdd" class="pink lighten-4 pink--text">+ Add Category</v-btn>
 
                     <v-data-table :headers="headers" :items="categories"
                         class="text--20 mt-2 elevation-1">
@@ -21,7 +21,7 @@
                     <v-dialog v-model="updateDialog" width="500">
                         <v-card>
                             <!-- Dialog Heading -->
-                            <v-toolbar color="primary" dark>
+                            <v-toolbar color="pink white--text" dark>
                                 <div>Update This Category?</div>
                                 <v-spacer></v-spacer>
                                 <v-btn icon @click="updateDialog = false">
@@ -42,8 +42,7 @@
                     <!-- Update Btn -->
                     <v-btn
                     :disabled="!categoryForm"
-                    color="success"
-                    class="mr-4"
+                    class="mr-4 pink lighten-4 pink--text"
                     @click="updateCategory"
                   >
                     <span v-if="!loading">Update</span>
@@ -56,7 +55,7 @@
       
                   <!-- Error Alert -->
                   <v-alert class="mt-3" v-show="errorAlert" dense type="error">
-                    Update Movie Failed!
+                    Update Category Failed!
                   </v-alert>
                 </v-form></v-card-text></v-card></v-dialog>
 
@@ -64,7 +63,7 @@
                 <v-dialog v-model="addDialog" width="500">
                     <v-card>
                         <!-- Dialog Heading -->
-                        <v-toolbar color="primary" dark>
+                        <v-toolbar color="pink white--text" dark>
                             <div>Add Category?</div>
                             <v-spacer></v-spacer>
                             <v-btn icon @click="addDialog = false">
@@ -85,8 +84,8 @@
                 <!-- Update Btn -->
                 <v-btn
                 :disabled="!categoryForm2"
-                color="success"
-                class="mr-4"
+                
+                class="mr-4 pink lighten-4 pink--text"
                 @click="addCategory"
               >
                 <span v-if="!loading">Add</span>

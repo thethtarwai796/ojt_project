@@ -4,7 +4,10 @@
         <mydrawer></mydrawer>
         <h1 class="">Transition History</h1>
         <v-data-table title="Today Orders" :headers="headers" :items="desserts" :items-per-page="5"
-        class="text--20 mt-2 elevation-3 display-1">
+         class="mx-auto pa-12 pb-8 elevation-3 display-1"
+        elevation="8"
+        max-width="448"
+        rounded="lg">
         </v-data-table>
     </div>
     
@@ -29,7 +32,7 @@
             { text: 'Customer Name', align: 'start', value: 'name' },
             { text: 'Date', align: 'start', value: 'date' },
             { text: 'Amount', align: 'start', value: 'amount' },
-            { text: 'Used Card', align: 'start', value: 'card' },
+            
             
           ],
           desserts: [
@@ -39,7 +42,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -47,7 +49,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               name: 'Frozen Yogurt',
@@ -55,7 +56,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -63,7 +63,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -71,7 +70,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -79,7 +77,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               name: 'Frozen Yogurt',
@@ -87,7 +84,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
              
@@ -95,7 +91,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -103,7 +98,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -111,7 +105,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             {
               
@@ -119,7 +112,6 @@
               name: 'Customer1',
               date: '2023-03-03',
               amount: 50000,
-              card: 'AYA credit card 1',
             },
             
             
